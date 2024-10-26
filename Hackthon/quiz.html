@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz on Ramanathaswamy Temple</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f8f9fa; /* Light background */
+        color: #343a40; /* Dark text color */
+      }
+      #quiz-container {
+        max-width: 600px; /* Max width of the quiz */
+        margin: 0 auto; /* Center the container */
+        padding: 20px; /* Padding inside the container */
+        background-color: white; /* White background for the quiz */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+      }
+      h1 {
+        text-align: center; /* Center title */
+        margin-bottom: 20px; /* Space below title */
+      }
+      .question {
+        margin-bottom: 20px; /* Space between questions */
+      }
+      .question h2 {
+        text-align: center; /* Center align question text */
+        margin: 10px 0; /* Space above and below question */
+      }
+      .options {
+        list-style-type: none; /* Remove bullets */
+        padding: 0; /* Remove padding */
+      }
+      .options li {
+        margin: 10px 0; /* Space between options */
+        text-align: center; /* Center align options */
+      }
+      .options label {
+        display: inline-block; /* Make label inline-block for better alignment */
+        background: #f1f3f5; /* Light grey background for options */
+        padding: 10px; /* Padding for options */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for options */
+        transition: background 0.2s; /* Smooth background transition */
+      }
+      .options input {
+        margin-right: 10px; /* Space between radio button and label */
+      }
+      .options label:hover {
+        background: #e9ecef; /* Change background on hover */
+      }
+      .submit-button {
+        display: block; /* Makes the button a block element */
+        width: 200px; /* Set a specific width for the button */
+        padding: 10px; /* Padding for button */
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for button */
+        margin: 20px auto; /* Center the button with auto margins */
+        transition: background 0.3s; /* Smooth background transition */
+      }
+      .submit-button:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+      }
+      #result {
+        margin-top: 20px; /* Space above results */
+        padding: 15px; /* Padding for results */
+        background-color: #e9ecef; /* Light grey background */
+        border-radius: 5px; /* Rounded corners */
+        border: 1px solid #dee2e6; /* Light border for results */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quiz on Ramanathaswamy Temple</h1>
+    <div id="quiz-container"></div>
+    <button class="submit-button" onclick="submitAnswers()">
+      Submit Answers
+    </button>
+    <div id="result"></div>
+
+    <script>
+      const questions = [
+        {
+          question:
+            "The Ramanathaswamy Temple is dedicated to which Hindu deity?",
+          options: ["A: Shiva", "B: Vishnu"],
+          answer: "A",
+          explanation:
+            "Ramanathaswamy Temple is a prominent Shiva temple, one of the twelve Jyotirlinga shrines dedicated to the god Shiva.",
+        },
+        {
+          question:
+            "The lingam at Ramanathaswamy Temple was established by whom, according to tradition?",
+          options: ["A: Lord Krishna", "B: Lord Ram"],
+          answer: "B",
+          explanation:
+            "According to Hindu mythology, Lord Ram established the lingam (an icon of Shiva) before crossing the Rama Setu to Lanka.",
+        },
+        {
+          question:
+            "Which famous bridge did Lord Ram cross after worshipping at the temple?",
+          options: ["A: Lakshman Setu", "B: Rama Setu"],
+          answer: "B",
+          explanation:
+            "Lord Ram is said to have crossed the 'Rama Setu' or Adam’s Bridge to reach the island kingdom of Lanka.",
+        },
+        {
+          question:
+            "The temple is part of which significant pilgrimage circuit?",
+          options: ["A: Char Dham", "B: Kailash Mansarovar"],
+          answer: "A",
+          explanation:
+            "The temple is part of the Char Dham pilgrimage, which includes four holy sites across India that are important in Hinduism.",
+        },
+        {
+          question:
+            "Which dynasty was responsible for expanding the temple during the 12th century?",
+          options: ["A: Chola Dynasty", "B: Pandya Dynasty"],
+          answer: "B",
+          explanation:
+            "The Pandya Dynasty expanded the temple in the 12th century, contributing significantly to its structure.",
+        },
+        {
+          question:
+            "The temple has the longest corridor among all Hindu temples in India. Who constructed this corridor?",
+          options: [
+            "A: King Raja Raja Chola",
+            "B: King Muthuramalinga Sethupathy",
+          ],
+          answer: "B",
+          explanation:
+            "The longest corridor, a significant architectural feature of the temple, was built by King Muthuramalinga Sethupathy.",
+        },
+        {
+          question:
+            "The temple's sanctum was renovated with materials from which other temple?",
+          options: ["A: Koneswaram Temple", "B: Meenakshi Temple"],
+          answer: "A",
+          explanation:
+            "Jeyaveera Cinkaiariyan, a king from the Jaffna kingdom, shipped stone blocks from Koneswaram Temple to renovate Ramanathaswamy's sanctum.",
+        },
+        {
+          question:
+            "Who sanctioned the construction of the temple in its current form?",
+          options: [
+            "A: King Kizhavan Sethupathi",
+            "B: King Raghunatha Kilavan",
+          ],
+          answer: "A",
+          explanation:
+            "King Kizhavan Sethupathi sanctioned the construction of the temple in its present form, which took place in the 17th century.",
+        },
+        {
+          question:
+            "Which style of poetry glorified the temple in sacred hymns?",
+          options: ["A: Nayanar hymns", "B: Vedic chants"],
+          answer: "A",
+          explanation:
+            "The temple is glorified in the sacred hymns of the Nayanars, Shaivite poet-saints who praised the deity and temple in their songs.",
+        },
+        {
+          question:
+            "The lingam at Ramanathaswamy Temple is considered one of the twelve Jyotirlingas. What does Jyotirlinga mean?",
+          options: [
+            "A: A pillar of light representing Shiva",
+            "B: A pillar of wisdom representing Vishnu",
+          ],
+          answer: "A",
+          explanation:
+            "Jyotirlinga means 'pillar of light,' symbolizing the god Shiva. It is an aniconic representation and considered one of the holiest Shiva shrines.",
+        },
+      ];
+
+      function renderQuiz() {
+        const container = document.getElementById("quiz-container");
+        questions.forEach((q, index) => {
+          const questionDiv = document.createElement("div");
+          questionDiv.className = "question";
+          questionDiv.innerHTML = `<h2>${index + 1}. ${q.question}</h2>`;
+          const optionsList = document.createElement("ul");
+          optionsList.className = "options";
+          q.options.forEach((option) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<label><input type="radio" name="question${index}" value="${option.charAt(
+              0
+            )}"> ${option}</label>`;
+            optionsList.appendChild(li);
+          });
+          questionDiv.appendChild(optionsList);
+          container.appendChild(questionDiv);
+        });
+      }
+
+      function submitAnswers() {
+        let score = 0;
+        let totalAttempted = 0; // Count of questions attempted
+        let resultHtml = "<h2>Results:</h2>";
+
+        questions.forEach((q, index) => {
+          const selectedOption = document.querySelector(
+            `input[name="question${index}"]:checked`
+          );
+          if (selectedOption) {
+            totalAttempted++; // Increment count of attempted questions
+            const answer = selectedOption.value;
+            if (answer === q.answer) {
+              score++;
+            }
+          }
+        });
+
+        const totalWrong = totalAttempted - score; // Calculate incorrect answers
+        resultHtml += `<p>Total Questions Attempted: ${totalAttempted}</p>`;
+        resultHtml += `<p>Correct Answers: ${score}</p>`;
+        resultHtml += `<p>Incorrect Answers: ${totalWrong}</p>`;
+        resultHtml += `<p>Your score: ${score} out of ${questions.length}</p>`;
+
+        document.getElementById("result").innerHTML = resultHtml;
+      }
+
+      window.onload = renderQuiz; // Render the quiz on page load
+    </script>
+  </body>
+</html>

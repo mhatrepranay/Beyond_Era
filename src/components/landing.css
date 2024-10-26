@@ -1,0 +1,240 @@
+
+ 
+body {
+    font-family: 'Georgia', serif;
+    color: #1a1a1a; /* Dark black text for heritage look */
+}
+
+.landing-page {
+    background-color: #fef3e2; /* Light warm orange parchment color */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #1a1a1a; /* Deep black for header */
+    color: #ff8c00; /* Warm orange for text */
+    font-size: 18px;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff8c00; /* Orange logo */
+}
+
+.header .nav a {
+    margin-left: 20px;
+    color: #ff8c00; /* Orange links */
+    text-decoration: none;
+}
+
+.hero {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    text-align: center;
+    background-color: #2d2929; /* Dark background for contrast */
+    color: #fefefe; /* Default text color */
+    position: relative; /* Position for overlay */
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(124, 122, 119, 0.5); /* Semi-transparent orange overlay */
+    z-index: 1; /* Ensure overlay is below the text */
+}
+
+.hero-text {
+    position: relative; /* Position for stacking context */
+    z-index: 2; /* Ensure text is above the overlay */
+}
+
+.hero h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better visibility */
+}
+
+.hero p {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for better visibility */
+}
+#herroo{
+    
+    background-image: url('../../public/bg.png'); /* Specify the path to your image */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    opacity: 0.5; 
+}
+.sty{
+    font-family: 'Great Vibes', cursive;
+
+}
+.sty span{
+    font-family: 'Georgia', serif;
+
+}
+ 
+.get-started-button {
+    background-color: #ff8c00;
+    border: none;
+    padding: 10px 20px;
+    color: #1a1a1a;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.feature-item {
+    text-align: center;
+    background-color: #fff3e2; /* Very light orange for card background */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.feature-item:hover {
+    transform: scale(1.05);
+}
+
+.feature-icon {
+    font-size: 36px;
+    color: #ff8c00; /* Warm orange for icons */
+    margin-bottom: 10px;
+}
+
+.feature-item h3 {
+    font-size: 20px;
+    color: #1a1a1a; /* Black for headings */
+}
+
+.feature-item p {
+    font-size: 16px;
+    color: #333333; /* Slightly lighter black for descriptions */
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a; /* Black footer */
+    color: #ff8c00; /* Orange text */
+    font-size: 16px;
+}
+/* Responsive adjustments for mobile view */
+@media (max-width: 768px) {
+    .header .logo {
+        font-size: 16px; /* Smaller font size for logo */
+    }
+
+    .header .nav a {
+        font-size: 13px; /* Smaller font size for nav items */
+        margin-left: 10px; /* Reduce spacing between nav items */
+    }
+
+    .hero {
+        padding: 60px 20px; /* Adjust padding for mobile */
+    }
+
+    .hero h1 {
+        font-size: 28px; /* Smaller font size for hero title */
+    }
+
+    .features-grid {
+        gap: 15px; /* Reduced spacing between feature items */
+    }
+
+    .feature-item h3 {
+        font-size: 18px; /* Slightly smaller for mobile readability */
+    }
+
+    .feature-item p {
+        font-size: 14px; /* Smaller font for feature descriptions */
+    }
+
+    .get-started-button {
+        font-size: 16px; /* Adjust button size for mobile */
+        padding: 8px 16px;
+    }
+}
+
+.uploader-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.file-input {
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-input:hover {
+    border-color: #0056b3;
+}
+
+.image-preview {
+    margin-top: 20px;
+}
+
+.send-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+
+.prediction-result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* landing.css */
+
+.content {
+    text-align: center; /* Center text */
+    margin: 40px 0; /* Add space above and below the section */
+    padding: 20px; /* Add padding */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.content h2 {
+    font-size: 2rem; /* Larger heading size */
+    color: #1a1a1a; /* Dark color for the title */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.content p {
+    font-size: 1.2rem; /* Larger font size for readability */
+    color: #333333; /* Slightly lighter text color for description */
+    line-height: 1.6; /* Improved line spacing */
+    max-width: 800px; /* Limit width for readability */
+    margin: 0 auto; /* Center align paragraph */
+}

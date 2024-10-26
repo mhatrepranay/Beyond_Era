@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz on Dragonfall Temple</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f8f9fa; /* Light background */
+        color: #343a40; /* Dark text color */
+      }
+      #quiz-container {
+        max-width: 600px; /* Max width of the quiz */
+        margin: 0 auto; /* Center the container */
+        padding: 20px; /* Padding inside the container */
+        background-color: white; /* White background for the quiz */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+      }
+      h1 {
+        text-align: center; /* Center title */
+        margin-bottom: 20px; /* Space below title */
+      }
+      .question {
+        margin-bottom: 20px; /* Space between questions */
+      }
+      .question h2 {
+        text-align: center; /* Center align question text */
+        margin: 10px 0; /* Space above and below question */
+      }
+      .options {
+        list-style-type: none; /* Remove bullets */
+        padding: 0; /* Remove padding */
+      }
+      .options li {
+        margin: 10px 0; /* Space between options */
+        text-align: center; /* Center align options */
+      }
+      .options label {
+        display: inline-block; /* Make label inline-block for better alignment */
+        background: #f1f3f5; /* Light grey background for options */
+        padding: 10px; /* Padding for options */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for options */
+        transition: background 0.2s; /* Smooth background transition */
+      }
+      .options input {
+        margin-right: 10px; /* Space between radio button and label */
+      }
+      .options label:hover {
+        background: #e9ecef; /* Change background on hover */
+      }
+      .submit-button {
+        display: block; /* Makes the button a block element */
+        width: 200px; /* Set a specific width for the button */
+        padding: 10px; /* Padding for button */
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for button */
+        margin: 20px auto; /* Center the button with auto margins */
+        transition: background 0.3s; /* Smooth background transition */
+      }
+      .submit-button:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+      }
+      #result {
+        margin-top: 20px; /* Space above results */
+        padding: 15px; /* Padding for results */
+        background-color: #e9ecef; /* Light grey background */
+        border-radius: 5px; /* Rounded corners */
+        border: 1px solid #dee2e6; /* Light border for results */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quiz on Dragonfall Temple</h1>
+    <div id="quiz-container"></div>
+    <button class="submit-button" onclick="submitAnswers()">
+      Submit Answers
+    </button>
+    <div id="result"></div>
+
+    <script>
+      const questions = [
+        {
+          question:
+            "The Dragonfall Temple is primarily dedicated to which deity?",
+          options: ["A: A mythical dragon", "B: The goddess of nature"],
+          answer: "A",
+          explanation:
+            "The Dragonfall Temple is dedicated to a mythical dragon, symbolizing power and protection.",
+        },
+        {
+          question:
+            "What is unique about the architecture of Dragonfall Temple?",
+          options: [
+            "A: It is entirely built of glass",
+            "B: It incorporates both traditional and modern designs",
+          ],
+          answer: "B",
+          explanation:
+            "The temple's architecture is unique because it blends traditional styles with modern design elements.",
+        },
+        {
+          question: "Which feature is most famous in the Dragonfall Temple?",
+          options: [
+            "A: The waterfall cascading from its peak",
+            "B: The golden statue of the deity",
+          ],
+          answer: "A",
+          explanation:
+            "The most famous feature of the Dragonfall Temple is the stunning waterfall that cascades down from its peak.",
+        },
+        {
+          question: "The temple is located in which region?",
+          options: ["A: The Valley of Kings", "B: The Dragon Valley"],
+          answer: "B",
+          explanation:
+            "Dragonfall Temple is situated in the picturesque Dragon Valley, known for its natural beauty.",
+        },
+        {
+          question:
+            "What significant festival is celebrated at the Dragonfall Temple?",
+          options: ["A: The Festival of Lights", "B: The Dragon Festival"],
+          answer: "B",
+          explanation:
+            "The Dragon Festival celebrates the temple and its deity, attracting visitors from far and wide.",
+        },
+        {
+          question:
+            "Which historical figure is associated with the temple's legend?",
+          options: ["A: A legendary warrior", "B: A wise sage"],
+          answer: "A",
+          explanation:
+            "The temple's legend includes tales of a legendary warrior who protected the valley.",
+        },
+        {
+          question:
+            "What type of art is prominently displayed inside the temple?",
+          options: ["A: Mural paintings", "B: Sculptures of dragons"],
+          answer: "B",
+          explanation:
+            "Inside the temple, sculptures of dragons are prominently displayed, reflecting its mythology.",
+        },
+        {
+          question: "The temple is built on which type of terrain?",
+          options: ["A: Rocky terrain", "B: Flat plains"],
+          answer: "A",
+          explanation:
+            "The Dragonfall Temple is built on rocky terrain, adding to its majestic presence.",
+        },
+        {
+          question: "Which natural feature surrounds the Dragonfall Temple?",
+          options: ["A: Dense forests", "B: Arid deserts"],
+          answer: "A",
+          explanation:
+            "The temple is surrounded by dense forests, enhancing its mystical atmosphere.",
+        },
+        {
+          question: "What is the primary purpose of the Dragonfall Temple?",
+          options: [
+            "A: A place for tourists to visit",
+            "B: A center for worship and spiritual activities",
+          ],
+          answer: "B",
+          explanation:
+            "The primary purpose of the Dragonfall Temple is to serve as a center for worship and spiritual activities.",
+        },
+      ];
+
+      function renderQuiz() {
+        const container = document.getElementById("quiz-container");
+        questions.forEach((q, index) => {
+          const questionDiv = document.createElement("div");
+          questionDiv.className = "question";
+          questionDiv.innerHTML = `<h2>${index + 1}. ${q.question}</h2>`;
+          const optionsList = document.createElement("ul");
+          optionsList.className = "options";
+          q.options.forEach((option) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<label><input type="radio" name="question${index}" value="${option.charAt(
+              0
+            )}"> ${option}</label>`;
+            optionsList.appendChild(li);
+          });
+          questionDiv.appendChild(optionsList);
+          container.appendChild(questionDiv);
+        });
+      }
+
+      function submitAnswers() {
+        let score = 0;
+        let totalAttempted = 0; // Count of questions attempted
+        let resultHtml = "<h2>Results:</h2>";
+
+        questions.forEach((q, index) => {
+          const selectedOption = document.querySelector(
+            `input[name="question${index}"]:checked`
+          );
+          if (selectedOption) {
+            totalAttempted++; // Increment count of attempted questions
+            const answer = selectedOption.value;
+            if (answer === q.answer) {
+              score++;
+            }
+          }
+        });
+
+        const totalWrong = totalAttempted - score; // Calculate incorrect answers
+        resultHtml += `<p>Total Questions Attempted: ${totalAttempted}</p>`;
+        resultHtml += `<p>Correct Answers: ${score}</p>`;
+        resultHtml += `<p>Incorrect Answers: ${totalWrong}</p>`;
+        resultHtml += `<p>Your score: ${score} out of ${questions.length}</p>`;
+
+        document.getElementById("result").innerHTML = resultHtml;
+      }
+
+      window.onload = renderQuiz; // Render the quiz on page load
+    </script>
+  </body>
+</html>

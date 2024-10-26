@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz on Kondana Caves</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f8f9fa; /* Light background */
+        color: #343a40; /* Dark text color */
+      }
+      #quiz-container {
+        max-width: 600px; /* Max width of the quiz */
+        margin: 0 auto; /* Center the container */
+        padding: 20px; /* Padding inside the container */
+        background-color: white; /* White background for the quiz */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+      }
+      h1 {
+        text-align: center; /* Center title */
+        margin-bottom: 20px; /* Space below title */
+      }
+      .question {
+        margin-bottom: 20px; /* Space between questions */
+      }
+      .question h2 {
+        text-align: center; /* Center align question text */
+        margin: 10px 0; /* Space above and below question */
+      }
+      .options {
+        list-style-type: none; /* Remove bullets */
+        padding: 0; /* Remove padding */
+      }
+      .options li {
+        margin: 10px 0; /* Space between options */
+        text-align: center; /* Center align options */
+      }
+      .options label {
+        display: inline-block; /* Make label inline-block for better alignment */
+        background: #f1f3f5; /* Light grey background for options */
+        padding: 10px; /* Padding for options */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for options */
+        transition: background 0.2s; /* Smooth background transition */
+      }
+      .options input {
+        margin-right: 10px; /* Space between radio button and label */
+      }
+      .options label:hover {
+        background: #e9ecef; /* Change background on hover */
+      }
+      .submit-button {
+        display: block; /* Makes the button a block element */
+        width: 200px; /* Set a specific width for the button */
+        padding: 10px; /* Padding for button */
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for button */
+        margin: 20px auto; /* Center the button with auto margins */
+        transition: background 0.3s; /* Smooth background transition */
+      }
+      .submit-button:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+      }
+      #result {
+        margin-top: 20px; /* Space above results */
+        padding: 15px; /* Padding for results */
+        background-color: #e9ecef; /* Light grey background */
+        border-radius: 5px; /* Rounded corners */
+        border: 1px solid #dee2e6; /* Light border for results */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quiz on Kondana Caves</h1>
+    <div id="quiz-container"></div>
+    <button class="submit-button" onclick="submitAnswers()">
+      Submit Answers
+    </button>
+    <div id="result"></div>
+
+    <script>
+      const questions = [
+        {
+          question: "Are the Kondana Caves located in the village of Kondhana?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation:
+            "The Kondana Caves are situated in the village of Kondhana.",
+        },
+        {
+          question: "Do the Kondana Caves contain 16 Buddhist caves?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation: "The cave group consists of 16 Buddhist caves.",
+        },
+        {
+          question: "Were the caves excavated in the first century A.D.?",
+          options: ["A) Yes", "B) No"],
+          answer: "B",
+          explanation:
+            "The Kondana Caves were excavated in the first century B.C.",
+        },
+        {
+          question:
+            "Is the construction style of the caves notable for its wooden pattern?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation:
+            "The caves are recognized for their construction style, which features a wooden pattern.",
+        },
+        {
+          question:
+            "Can one reach the Kondana Caves by descending from Rajmachi village?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation:
+            "Access to the caves involves descending from Rajmachi village.",
+        },
+        {
+          question: "Are the Kondana Caves located 33 km north of Lonavala?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation: "The caves are approximately 33 km north of Lonavala.",
+        },
+        {
+          question:
+            "Were the caves first brought to notice in the 19th century by Vishnu Sastri?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation:
+            "Vishnu Sastri first brought attention to the Kondana Caves in the 19th century.",
+        },
+        {
+          question:
+            "Is the Kondana Cave group located at the base of the old hill fort of Rajmachi?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation:
+            "The caves are situated at the base of the old hill fort of Rajmachi.",
+        },
+        {
+          question:
+            "Is water trickling down over the face of the rock a common occurrence in the dry season?",
+          options: ["A) Yes", "B) No"],
+          answer: "A",
+          explanation:
+            "Water trickles down the rock face during a considerable part of the dry season, which has caused damage to the caves.",
+        },
+        {
+          question:
+            "Are the Kondana Caves easily visible due to the lack of forest cover?",
+          options: ["A) Yes", "B) No"],
+          answer: "B",
+          explanation:
+            "The caves are quite hidden from view by the thick forest in front of them.",
+        },
+      ];
+
+      function renderQuiz() {
+        const container = document.getElementById("quiz-container");
+        questions.forEach((q, index) => {
+          const questionDiv = document.createElement("div");
+          questionDiv.className = "question";
+          questionDiv.innerHTML = `<h2>${index + 1}. ${q.question}</h2>`;
+          const optionsList = document.createElement("ul");
+          optionsList.className = "options";
+          q.options.forEach((option) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<label><input type="radio" name="question${index}" value="${option.charAt(
+              0
+            )}"> ${option}</label>`;
+            optionsList.appendChild(li);
+          });
+          questionDiv.appendChild(optionsList);
+          container.appendChild(questionDiv);
+        });
+      }
+
+      function submitAnswers() {
+        let score = 0;
+        let totalAttempted = 0; // Count of questions attempted
+        let resultHtml = "<h2>Results:</h2>";
+
+        questions.forEach((q, index) => {
+          const selectedOption = document.querySelector(
+            `input[name="question${index}"]:checked`
+          );
+          if (selectedOption) {
+            totalAttempted++; // Increment count of attempted questions
+            const answer = selectedOption.value;
+            if (answer === q.answer) {
+              score++;
+            }
+          }
+        });
+
+        const totalWrong = totalAttempted - score; // Calculate incorrect answers
+        resultHtml += `<p>Total Questions Attempted: ${totalAttempted}</p>`;
+        resultHtml += `<p>Correct Answers: ${score}</p>`;
+        resultHtml += `<p>Incorrect Answers: ${totalWrong}</p>`;
+        resultHtml += `<p>Your score: ${score} out of ${questions.length}</p>`;
+
+        document.getElementById("result").innerHTML = resultHtml;
+      }
+
+      window.onload = renderQuiz; // Render the quiz on page load
+    </script>
+  </body>
+</html>

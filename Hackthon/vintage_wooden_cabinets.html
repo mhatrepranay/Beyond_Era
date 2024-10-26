@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vintage Wooden Cabinets Viewer</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa; /* Light background for contrast */
+        color: #343a40; /* Dark text color */
+        min-height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px; /* Max width for container */
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        background-color: #ffffff; /* White background for content */
+        border-radius: 10px; /* Rounded corners */
+      }
+
+      #three {
+        width: 100%; /* Full width on small screens */
+        height: 600px; /* Fixed height */
+        border: 1px solid #dee2e6; /* Light border for model viewer */
+        border-radius: 10px; /* Rounded corners for the model viewer */
+        margin-bottom: 20px; /* Space between model and info */
+      }
+
+      .info {
+        max-width: 400px; /* Max width for information section */
+        padding: 15px;
+        border: 1px solid #dee2e6; /* Light border for info section */
+        border-radius: 10px; /* Rounded corners for info section */
+        background-color: #e9ecef; /* Light grey background for info */
+        text-align: left;
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+      }
+
+      .info:hover {
+        background-color: #ced4da; /* Darker grey on hover for info section */
+      }
+
+      h1 {
+        color: #6c757d; /* Darker text color for the title */
+        margin: 0; /* Remove default margin */
+        padding: 10px 0; /* Padding around title */
+        text-align: center; /* Center align title */
+        font-size: 2rem; /* Increased font size for prominence */
+      }
+
+      h2 {
+        color: #495057; /* Darker color for section titles */
+        margin: 0 0 10px; /* Spacing below section title */
+        font-size: 1.5rem; /* Section title size */
+      }
+
+      h3 {
+        color: #495057; /* Darker color for key features */
+        margin: 10px 0; /* Spacing above and below */
+      }
+
+      p {
+        line-height: 1.5; /* Improved readability */
+      }
+
+      ul {
+        list-style-type: disc; /* Bullet points for list */
+        padding-left: 20px; /* Indentation for list items */
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          flex-direction: row; /* Change to row layout on larger screens */
+          align-items: flex-start; /* Align items to the start */
+        }
+        .info {
+          margin-left: 20px; /* Add space between model and info on larger screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Vintage Wooden Cabinets</h1>
+      <model-viewer
+        id="three"
+        src="/models/vintage_wooden_cabinets.glb"
+        autoplay
+        camera-controls
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+      ></model-viewer>
+      <div class="info">
+        <h2>About the Model</h2>
+        <p>
+          Antique cabinets refer to furniture containing a door or doors, often
+          featuring drawers, shelves, and compartments. Cabinets can also be
+          partially glazed. Initially, cabinet makers were provincial estate
+          carpenters working mainly in oak and walnut. In the 18th century,
+          their craft became an art form, especially in London.
+        </p>
+        <h3>Notable Cabinet Makers:</h3>
+        <ul>
+          <li>
+            <strong>Thomas Chippendale (1718-1779):</strong> Famous for his
+            publication, ‘Gentleman and Cabinet Makers Director’ in 1754.
+          </li>
+          <li>
+            <strong>George Hepplewhite (1727-1786):</strong> Published ‘The
+            Cabinet Makers and Upholsterers Guide’ in 1789.
+          </li>
+          <li>
+            <strong>Thomas Sheraton (1751-1806):</strong> Published ‘The Cabinet
+            Makers and Upholsterers Drawing Book’ in 1791/1794.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
+  </body>
+</html>

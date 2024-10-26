@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz on Elephanta Caves</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa; /* Light background */
+            color: #343a40; /* Dark text color */
+        }
+        #quiz-container {
+            max-width: 600px; /* Max width of the quiz */
+            margin: 0 auto; /* Center the container */
+            padding: 20px; /* Padding inside the container */
+            background-color: white; /* White background for the quiz */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+        h1 {
+            text-align: center; /* Center title */
+            margin-bottom: 20px; /* Space below title */
+        }
+        .question {
+            margin-bottom: 20px; /* Space between questions */
+        }
+        .question h2 {
+            text-align: center; /* Center align question text */
+            margin: 10px 0; /* Space above and below question */
+        }
+        .options {
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+        }
+        .options li {
+            margin: 10px 0; /* Space between options */
+            text-align: center; /* Center align options */
+        }
+        .options label {
+            display: inline-block; /* Make label inline-block for better alignment */
+            background: #f1f3f5; /* Light grey background for options */
+            padding: 10px; /* Padding for options */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor for options */
+            transition: background 0.2s; /* Smooth background transition */
+        }
+        .options input {
+            margin-right: 10px; /* Space between radio button and label */
+        }
+        .options label:hover {
+            background: #e9ecef; /* Change background on hover */
+        }
+        .submit-button {
+            display: block; /* Makes the button a block element */
+            width: 200px; /* Set a specific width for the button */
+            padding: 10px; /* Padding for button */
+            background-color: #007bff; /* Bootstrap primary color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor for button */
+            margin: 20px auto; /* Center the button with auto margins */
+            transition: background 0.3s; /* Smooth background transition */
+        }
+        .submit-button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+        #result {
+            margin-top: 20px; /* Space above results */
+            padding: 15px; /* Padding for results */
+            background-color: #e9ecef; /* Light grey background */
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #dee2e6; /* Light border for results */
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz on Elephanta Caves</h1>
+    <div id="quiz-container"></div>
+    <button class="submit-button" onclick="submitAnswers()">
+        Submit Answers
+    </button>
+    <div id="result"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "Are the Elephanta Caves located on Elephanta Island?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "The Elephanta Caves are situated on Elephanta Island, also known as the Island of Gharapuri.",
+            },
+            {
+                question: "Do the Elephanta Caves date back to the 2nd century BC?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "Evidence of occupation on Elephanta Island dates back to the 2nd century BC.",
+            },
+            {
+                question: "Were the Elephanta Caves constructed in the 5th to 6th centuries AD?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "The rock-cut Elephanta Caves were constructed around the mid-5th to 6th centuries AD.",
+            },
+            {
+                question: "Is Cave 1 the most important cave among the Elephanta Caves?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "The great Cave 1 is considered the most important among the Elephanta Caves due to its size and architectural features.",
+            },
+            {
+                question: "Does Cave 1 measure approximately 39 meters in length?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "Cave 1 measures about 39 meters from the front entrance to the back.",
+            },
+            {
+                question: "Are the Elephanta Caves supported by rows of columns?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "The main body of Cave 1 is supported by rows of six columns each.",
+            },
+            {
+                question: "Is the architectural style of Elephanta Caves similar to the Dumar Lena cave at Ellora?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "Cave 1 closely resembles the Dumar Lena cave at Ellora in its architectural plan.",
+            },
+            {
+                question: "Are all archaeological components in the Elephanta Caves preserved in their natural settings?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "The archaeological components in the Elephanta Caves are preserved in their original natural settings.",
+            },
+            {
+                question: "Is there potential to reveal more archaeological material at Elephanta Caves?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "There is scope to uncover more archaeological material and enhance information by exposing buried stupas.",
+            },
+            {
+                question: "Is there a need to safeguard the Elephanta Caves from nearby industrial development?",
+                options: ["A) Yes", "B) No"],
+                answer: "A",
+                explanation: "The need to protect the fragile site from nearby industrial development has been noted to preserve its integrity.",
+            },
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById("quiz-container");
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<h2>${index + 1}. ${q.question}</h2>`;
+                const optionsList = document.createElement("ul");
+                optionsList.className = "options";
+                q.options.forEach((option) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<label><input type="radio" name="question${index}" value="${option.charAt(0)}"> ${option}</label>`;
+                    optionsList.appendChild(li);
+                });
+                questionDiv.appendChild(optionsList);
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function submitAnswers() {
+            let score = 0;
+            let totalAttempted = 0; // Count of questions attempted
+            let resultHtml = "<h2>Results:</h2>";
+
+            questions.forEach((q, index) => {
+                const selectedOption = document.querySelector(
+                    `input[name="question${index}"]:checked`
+                );
+                if (selectedOption) {
+                    totalAttempted++; // Increment count of attempted questions
+                    const answer = selectedOption.value;
+                    if (answer === q.answer) {
+                        score++;
+                    }
+                }
+            });
+
+            const totalWrong = totalAttempted - score; // Calculate incorrect answers
+            resultHtml += `<p>Total Questions Attempted: ${totalAttempted}</p>`;
+            resultHtml += `<p>Correct Answers: ${score}</p>`;
+            resultHtml += `<p>Incorrect Answers: ${totalWrong}</p>`;
+            resultHtml += `<p>Your score: ${score} out of ${questions.length}</p>`;
+
+            document.getElementById("result").innerHTML = resultHtml;
+        }
+
+        window.onload = renderQuiz; // Render the quiz on page load
+    </script>
+</body>
+</html>
